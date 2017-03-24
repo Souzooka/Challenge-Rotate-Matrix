@@ -28,7 +28,15 @@ module.exports = class MatrixRotator {
 
     // must be a valid Direction, see Direction.js
     if (direction === Direction.CW) {
-
+      for (let i = numOfArrays - 1; i >= 0; i--) {
+        for (let j = numOfArrays - 1; j >= 0; j--) {
+          newArray.push(this.matrix[j][i]);
+        }
+        newMatrix.unshift(newArray);
+        newArray = [];
+      }
+      this.matrix = newMatrix;
+      console.log(newMatrix);
     }
     else if (direction === Direction.CCW) {
       for (let i = 0; i < numOfArrays; i++) {
@@ -39,7 +47,7 @@ module.exports = class MatrixRotator {
         newArray = [];
       }
       this.matrix = newMatrix;
-      console.log(newMatrix);
+
     } else {
       return false;
     }
