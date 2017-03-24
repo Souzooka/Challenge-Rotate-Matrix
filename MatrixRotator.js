@@ -1,3 +1,5 @@
+const Direction = require("./Direction").Direction;
+
 /*  MatrixRotator(matrix)
  *
  *  @param matrix                        a multidimensional array containing the matrix
@@ -8,41 +10,40 @@
  *                                       Direction.CW or Direction.CWW
  *        @returns the rotated matrix
  */
-exports.MatrixRotator = MatrixRotator;
-var Direction = require("./Direction").Direction;
+module.exports = class MatrixRotator {
+  constructor( matrix ) {
+    this.matrix = matrix;
+  }
 
-function MatrixRotator(matrix){
-  this.matrix = matrix;
+  //      |-- Must be Direction.CW
+  //      v        or Direction.CCW
+  rotate (direction) {
+    // do work here
 
-};
+    // must be a valid Direction, see Direction.js
 
-//                                         |-- Must be Direction.CW
-//                                         v        or Direction.CCW
-MatrixRotator.prototype.rotate = function(direction) {
-  // do work here
+    let numOfArrays = this.matrix.length;
+    let newMatrix = [];
+    let newArray = [];
 
-  let numOfArrays = this.matrix.length;
-  let newMatrix = [];
-  let newArray = [];
+    // must be a valid Direction, see Direction.js
+    if (direction === Direction.CW) {
 
-  // must be a valid Direction, see Direction.js
-  if (direction === Direction.CW) {
-    for (let i = 0; i < numOfArrays; i++) {
-      for (let j = 0; j < numOfArrays; j++) {
-
+    }
+    else if (direction === Direction.CCW) {
+      for (let i = 0; i < numOfArrays; i++) {
+        for (let j = 0; j < numOfArrays; j++) {
+          newArray.push(this.matrix[j][i]);
+        }
+        newMatrix.unshift(newArray);
+        newArray = [];
       }
-
-      newMatrix.push(newArray);
+      this.matrix = newMatrix;
+      console.log(newMatrix);
+    } else {
+      return false;
     }
 
-
   }
-  else if (direction === Direction.CCW) {
-
-  } else {
-    return false;
-  }
-
-
-
 };
+
