@@ -19,9 +19,7 @@ module.exports = class MatrixRotator {
   //      v        or Direction.CCW
   rotate (direction) {
     // do work here
-
     // must be a valid Direction, see Direction.js
-
     let numOfArrays = this.matrix.length;
     let newMatrix = [];
     let newArray = [];
